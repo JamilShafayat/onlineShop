@@ -11,11 +11,14 @@ class CreateUserTypesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name',64)->unique();
+            $table->tinyInteger('status')->default(1)->comment('1=active and 0=inactive');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -24,7 +27,7 @@ class CreateUserTypesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('user_types');
     }
