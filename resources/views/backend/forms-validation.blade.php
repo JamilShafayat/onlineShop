@@ -727,8 +727,10 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>    </div>
-                        </div>            <div class="main-card mb-3 card">
+                                </div>    
+                            </div>
+                        </div>            
+                        <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <h5 class="card-title">Bootstrap 4 Form Validation</h5>
                                 <form class="needs-validation" novalidate>
