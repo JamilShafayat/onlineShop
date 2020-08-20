@@ -16,10 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('restrict');
-            $table->foreignId('supplier_id')->default(0)->references('id')->on('users')->onDelete('restrict');
+            $table->foreignId('supplier_id')->nullable()->references('id')->on('users')->onDelete('restrict');
             $table->string('title',128)->unique();
             $table->string('slug',128)->unique();
-            $table->string('name',128);
             $table->string('brand',32)->nullable();
             $table->decimal('brought_price', 8, 2);
             $table->decimal('sale_price', 8, 2);

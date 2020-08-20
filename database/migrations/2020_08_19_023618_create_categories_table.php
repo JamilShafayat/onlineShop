@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name',128)->unique();
             $table->string('slug',128)->unique();
             $table->string('banner',128)->nullable();
-            $table->foreignId('category_id')->default(0)->references('id')->on('categories')->onDelete('restrict');
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->onDelete('restrict');
             $table->tinyInteger('status')->default(1)->comment('1=active and 0=inactive');
             $table->timestamps();
             $table->softDeletes();

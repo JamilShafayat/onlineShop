@@ -19,4 +19,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function area()
+    {
+        return $this->hasOne(Area::class);
+    }
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'id', 'customer_id');
+    }
 }
