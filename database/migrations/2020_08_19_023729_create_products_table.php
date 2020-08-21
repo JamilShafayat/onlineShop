@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('slug',128)->unique();
             $table->string('brand',32)->nullable();
             $table->string('image',128)->nullable();
-            $table->decimal('brought_price', 8, 2);
+            $table->decimal('bought_price', 8, 2);
             $table->decimal('sale_price', 8, 2);
             $table->decimal('offer_price', 8, 2)->nullable();
             $table->longText('description')->nullable();

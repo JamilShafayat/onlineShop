@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\UserType;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -21,20 +23,32 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $validator= Validator ::make($request->all(), [
             'user_name'   => 'required|unique:users',
             'email'       => 'required|email|unique:users,email',
-            'password'    => 'required|min:6|confirmed',
+            'password'    => 'required|min:6',
             'user_type_id'=> 'required',
+            'image'       => 'file',
         ]);
-      
+
         if ($validator->fails()){
-      
+
             return redirect()->back()->withErrors($validator)->withInput();
         }
-      
+
+        if ($request->hasFile('image')){
+
+            $image = $request->file('image');
+            $file_name = uniqid('image',true).Str::random(10).'.'.$image->getClientOriginalExtension();
+
+            if($image->isValid()){
+              $image->storeAs('image',$file_name);
+            }
+        }
+
         $user = User::create([
-      
+
             'first_name'    => trim($request->input('first_name')),
             'last_name'     => trim($request->input('last_name')),
             'user_name'     => trim($request->input('user_name')),
@@ -45,54 +59,54 @@ class UserController extends Controller
             'area_id'       => $request->input('area_id'),
             'nid'           => trim($request->input('nid')),
             'birth_date'    => trim($request->input('birth_date')),
+            'image'         => $file_name,
             'address'       => trim($request->input('address')),
             'guardian_name' => trim($request->input('guardian_name')),
             'guardian_phone'=> trim($request->input('guardian_phone')),
-            'status'        => trim($request->input('status')),
         ]);
-      
+
         return redirect()->back()->with('success','User created successfully.');
     }
 
     public function show($id)
     {
-        $user = User::findorFail($id);
+        $user = User::findOrFail($id);
         $userTypes = UserType::where('status', 1)->get();
         $areas = Area::where('status', 1)->get();
-        
+
         return view('backend.user.user', compact('user','userTypes','areas'));
     }
 
     public function update(Request $request,$id)
     {
         //dd($request->all());
-        $data = User::findorFail($id);
-    
+        $data = User::findOrFail($id);
+
         if(auth()->user()->type != 'admin'){
-    
+
             $validator      = Validator::make($request->all(), [
 
                 'user_name'   => 'required',
                 'email'       => 'required|email',
                 'user_type_id'=> 'required',
             ]);
-    
+
             if ($validator->fails()){
-        
+
                 return redirect()->back()->withErrors($validator)->withInput();
             }
-    
+
             if ($request->hasFile('profile_pic')){
-    
+
                 $profile_pic = $request->file('profile_pic');
                 $file_name = uniqid('profile_pic',true).Str::random(10).'.'.$profile_pic->getClientOriginalExtension();
-                
+
                 if($profile_pic->isValid()){
                 $profile_pic->storeAs('image',$file_name);
                 }
-    
+
                 $data->update([
-        
+
                     'first_name'    => trim($request->input('first_name')),
                     'last_name'     => trim($request->input('last_name')),
                     'user_name'     => trim($request->input('user_name')),
@@ -107,11 +121,11 @@ class UserController extends Controller
                     'guardian_phone'=> trim($request->input('guardian_phone')),
                     'password'      => bcrypt(trim($request->input('password'))),
                 ]);
-    
+
             }else{
-    
+
                 $data->update([
-        
+
                 'first_name'    => trim($request->input('first_name')),
                 'last_name'     => trim($request->input('last_name')),
                 'user_name'     => trim($request->input('user_name')),
@@ -124,30 +138,30 @@ class UserController extends Controller
                 'guardian_name' => trim($request->input('guardian_name')),
                 'guardian_phone'=> trim($request->input('guardian_phone')),
                 'password'      => bcrypt(trim($request->input('password'))),
-        
+
                 ]);
-            }  
+            }
         }else{
-    
+
             $validator = Validator::make($request->all(), [
-    
+
               'status'  => 'required',
-    
+
             ]);
-    
+
             if ($validator->fails()){
-    
+
               return redirect()->back()->withErrors($validator)->withInput();
             }
-    
-    
+
+
             $data->update([
-    
+
               'status'  => trim($request->input('status')),
-    
+
             ]);
         }
-    
+
         return redirect()->back()->with('success','User updated successfully.');
     }
 

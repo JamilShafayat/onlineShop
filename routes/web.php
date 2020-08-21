@@ -67,7 +67,8 @@ Route::get('/contact', 'Frontend\ContactController@showContact')->name('contact'
 
 
 Route::get('/dashboard', 'Backend\DashboardController@showDashboard')->name('dashboard');
-//  Configarations 
+Route::get('/showAll', 'Backend\DashboardController@showAll')->name('showAll');
+//  Configarations
 Route::resource('area', 'Backend\AreaController');
 Route::resource('userType', 'Backend\UserTypeController');
 Route::resource('user', 'Backend\UserController');
@@ -81,5 +82,5 @@ Route::get('/report','Backend\OrderController@generateReport')->name('report');
 Route::group(['middleware'=>'auth'], function(){
 
 
-    
+
 });

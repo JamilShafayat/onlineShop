@@ -41,10 +41,10 @@ class OrderController extends Controller
 
   public function update(Request $request, $id)
   {
-    $order= Cart::find($id);
+    $order= Order::find($id);
 
     if (auth()->user()->type =='admin') {
-      
+
       $order->update([
 
         'distributor_id'   => $request->distributor_id,
@@ -62,42 +62,42 @@ class OrderController extends Controller
     return redirect()->back()->with('success','Order updated successfully.');
   }
 
-  public function destroy(Order $order)
+  public function destroy($id)
   {
     $data = Order::find($id);
     $data->delete();
-  
+
     return redirect()->back()->with('success','Order deleted successfully.');
   }
 
   public function pdfExport($id)
   {
     $order = Order::find($id);
-    $orderDetails = OrderDetails::where('order_id',$rrder->id)->get();
+    $orderDetails = OrderDetail::where('order_id',$order->id)->get();
 
     $pdf = PDF::loadview('backend.pdf',['order'=> $order,'orderDetails'=>$orderDetails])->setPaper('a4','portrait');
 
-    $fileName = $order->custoomer->user_name;
+    $fileName = $order->customer->user_name;
 
-    return $pdf->stream($fileName . '.pdf');    
+    return $pdf->stream($fileName . '.pdf');
   }
-    
+
   public function reportGenerate()
   {
     $data=[];
-  
+
     if(!empty($_GET['from_date']))
     {
       $fromDate=$_GET['from_date'];
       $toDate=$_GET['to_date'];
-  
-      $data=CartDetails::whereBetween('created_at',[ $fromDate,$toDate])->get();
-  
+
+      $data=CartDetail::whereBetween('created_at',[ $fromDate,$toDate])->get();
+
       $total = $data->sum('price');
-  
+
       return view('backend.report',compact('data','total'));
     }
-  
+
     return view('backend.report',compact('data'));
   }
 }

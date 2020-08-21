@@ -23,11 +23,11 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class,'id', 'category_id');
     }
 
     public function supplier()
     {
-        return $this->hasOne(User::class, 'supplier_id');
+        return $this->hasOne(User::class, 'id', 'supplier_id');
     }
 }
