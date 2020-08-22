@@ -584,8 +584,8 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-2" role="tabpanel">
-                                <div class="row col-md-12">
-                                    <div class="app-page-title">
+                                <div class="col-md-12">
+                                    <div class="app-page">
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
@@ -599,6 +599,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row col-md-12">
                                     <div class="card-body table-border-style">
                                         <div class="table-responsive">
                                             <table class="mb-0 table table-striped table-bordered datatable">
@@ -638,8 +640,8 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-3" role="tabpanel">
-                                <div class="row col-md-12">
-                                    <div class="app-page-title">
+                                <div class="col-md-12">
+                                    <div class="app-page">
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
@@ -653,6 +655,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row col-md-12">
                                     <div class="card-body table-border-style">
                                         <div class="table-responsive">
                                             <table class="mb-0 table table-striped table-bordered datatable">
@@ -692,8 +696,8 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-4" role="tabpanel">
-                                <div class="row col-md-12">
-                                    <div class="app-page-title">
+                                <div class="col-md-12">
+                                    <div class="app-page">
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
@@ -707,6 +711,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row col-md-12">
                                     <div class="card-body table-border-style">
                                         <div class="table-responsive">
                                             <table class="mb-0 table table-striped table-bordered datatable">
