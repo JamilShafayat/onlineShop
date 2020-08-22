@@ -19,12 +19,12 @@
                     <div class="signin-image">
                         <figure><img src="{{ asset('public/assets/reg_log/images/signin-image.jpg') }}" alt="sing up image"></figure>
                         <a href="{{ asset('registration')}}" class="signup-image-link">Create an account</a>
+                        <a href="{{ asset('home')}}" class="signup-image-link">Back to Website</a>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign up</h2>
-                        <!-- <form method="POST" class="register-form" id="login-form"> -->
-                        <form method="POST" action="{{ route('login') }}" id="login-form">
+                        <form method="POST" action="{{ route('login') }}" id="login-form" class="register-form">
                             @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -35,7 +35,7 @@
                                 <input type="password" name="password" id="your_pass" placeholder="Password"/>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <input type="checkbox" name="" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">

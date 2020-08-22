@@ -110,10 +110,9 @@
                             </li>
                         </ul>
 
-
+                        
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-animated1-0" role="tabpanel">
-
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
                                         <div class="mb-3 card">
@@ -528,12 +527,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sl.</th>
+                                                        <th>Order Id</th>
                                                         <th>Customer Name</th>
-                                                        <th>Customer Contact</th>
+                                                        <th>Contact</th>
                                                         <th>Address</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Payment Status</th>
-                                                        <th>Operational Status</th>
+                                                        <th>Amount</th>
+                                                        <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -544,15 +543,37 @@
                                                     @foreach($orders as $order)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
-                                                        <td>{{ $order->customer_id ? $order->customer->user_name : $order->customer_name }}</td>
-                                                        <td>{{ $order->customer_id ? $order->customer->phone_no : $order->customer_phone_number }}</td>
-                                                        <td>{{ $order->customer_id ? $order->customer->address : $order->address }}</td>
-                                                        <td>{{ $oreder->paid_amount}}</td>
-                                                        <td>{{ $oreder->payment_status}}</td>
-                                                        <td>{{ $oreder->sale_operational_statusprice}}</td>
+                                                        <td>{{ $order->id }}</td>
+                                                        <td>{{ $order->customer_name ? $order->customer_name : $order->customer->user_name }}</td>
+                                                        <td>{{ $order->customer_phone_number ? $order->customer_phone_number : $order->customer->phone_no }}</td>
+                                                        <td>{{ $order->address ? $order->address : $order->customer->address }}</td>
+                                                        <td>{{ $order->paid_amount}}</td>
                                                         <td>
-                                                            <a href="{{ route('oreder.show', $oreder->id)}}" class="mr-2" title="view" ><info class="fa fa-eye bg-white"></i></a>
-                                                            <a href="{{ route('oreder.edit', $oreder->id)}}" class="mr-2" title="edit" ><info class="fa fa-edit bg-white"></i></a>
+                                                            @if($order->status == 0)
+                                                                Pending
+                                                            @elseif($order->status == 1)
+                                                                Ordered
+                                                            @elseif($order->status == 2)
+                                                                Processing
+                                                            @elseif($order->status == 3)
+                                                                Delivered
+                                                            @elseif($order->status == 4)
+                                                                Rejected
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" id="productModal" data-toggle="modal" data-target=".viewOrderModal">
+                                                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                                    <i class="nav-link-icon fa fa-edit"></i>
+                                                                </span>
+                                                                View Details
+                                                            </button>
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-warning" id="productModal" data-toggle="modal" data-target=".updateOrderModal">
+                                                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                                    <i class="nav-link-icon fa fa-edit"></i>
+                                                                </span>
+                                                                View Status
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -731,6 +752,294 @@
 </div>
 @endsection
 
+<!-- Modal for Order-->
+<!-- Large modal for View Order Details-->
+<div class="modal fade viewOrderModal" tabindex="-1" id="viewOrderModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create A New User</h5>
+                        <form action="{{ route('user.store')}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
+                             @csrf
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">First Name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="first_name" placeholder="First name">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Last Name</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="last_name" placeholder="Last name">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">User Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="validationCustomUsername" name="user_name" placeholder="User name" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a unique username.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Contact Number</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="phone_no" placeholder="Contact number">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Password</label>
+                                    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="password" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a password with minimum six digits.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="validationCustomUsername" name="email" placeholder="email" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a unique email.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Address</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="address" placeholder="adrees">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">NID</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="nid" placeholder="nid">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Image</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="validationCustomUsername" name="image"  placeholder="image" aria-describedby="inputGroupPrepend">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Birth Date</label>
+                                    <input type="date" class="form-control" id="validationCustom01" name="birth_date" placeholder="birth date">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Guardian Name</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="guardian_name" placeholder="guardian name">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Guardian Phone</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="validationCustomUsername" name="guardian_phone" placeholder="guardian phone" aria-describedby="inputGroupPrepend">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom03">User Type</label>
+                                    <select id="validationCustom03"  name="user_type_id" class="form-control" required>
+                                        <option value="">Select User Type</option>
+                                        @foreach($userTypes as $userType)
+                                        <option value="{{ $userType->id}}">{{ $userType->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid type.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom04">Area</label>
+                                    <select id="validationCustom04"  name="area_id" class="form-control" required>
+                                        <option value="">Select Area</option>
+                                        @foreach($areas as $area)
+                                        <option value="{{ $area->id}}">{{ $area->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid Area.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info float-right" type="submit">Create</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal for Update Order-->
+<div class="modal fade updateOrderModal" tabindex="-1" id="updateOrderModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Assign Distributor and Check the Delivery Status</h5>
+                        <form action="{{ route('order.update', $order->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
+                            @csrf
+                            @method('put')
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Address</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="address" placeholder="adrees" value="{{ $order->address ? $order->address : $order->customer->address }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom03">Distributor</label>
+                                    <select id="validationCustom03"  name="distributor_id" class="form-control" required>
+                                        <option value="">Select Distributor</option>
+                                        @foreach($distributors as $distributor)
+                                        <option value="{{ $distributor->id}}">{{ $distributor->user_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid type.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom04">Order Status</label>
+                                    <select id="validationCustom04"  name="status" class="form-control" required>
+
+                                        <option value="{{ $order->status}}">
+                                            @if($order->status == 0)
+                                                Pending
+                                            @elseif($order->status == 1)
+                                                Ordered
+                                            @elseif($order->status == 2)
+                                                Processing
+                                            @elseif($order->status == 3)
+                                                Delivered
+                                            @elseif($order->status == 4)
+                                                Rejected
+                                            @endif
+                                        </option>
+                                        <option value="">Change Status</option>
+                                        <option value="1">Ordered</option>
+                                        <option value="2">Processing</option>
+                                        <option value="3">Delivered</option>
+                                        <option value="4">Rejected</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid Area.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info float-right" type="submit">Update</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal for Order-->
+
+
+
+
+
+
+<!-- Modal for User-->
 <!-- Large modal for create user-->
 <div class="modal fade userModal" tabindex="-1" id="userModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -910,7 +1219,18 @@
         </div>
     </div>
 </div>
+<!-- Modal for User-->
 
+
+
+
+
+
+
+
+
+
+<!-- Modal for Product-->
 <!-- Large modal for create Product-->
 <div class="modal fade productModal" tabindex="-1" id="productModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -1062,7 +1382,18 @@
         </div>
     </div>
 </div>
+<!-- Modal for Product-->
 
+
+
+
+
+
+
+
+
+
+<!-- Modal for category-->
 <!-- Large modal for create category-->
 <div class="modal fade categoryModal" tabindex="-1" id="categoryModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -1143,3 +1474,4 @@
         </div>
     </div>
 </div>
+<!-- Modal for category-->

@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('postal_code', 32)->nullable();
             $table->decimal('total_amount', 10, 2);
             $table->decimal('discount_amount', 10, 2)->default(0.00);
-            $table->decimal('paid_amount', 10, 2);
+            $table->decimal('paid_amount', 10, 2)->nullable();
             $table->text('payment_details')->nullable();
             $table->tinyInteger('status')->default(1)->comment('1=active and 0=inactive');
             $table->tinyInteger('payment_status')->default(0)->comment('1=active and 0=pending');

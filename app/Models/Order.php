@@ -15,7 +15,7 @@ class Order extends Model
 
     public function distributor()
     {
-        return $this->hasOne(User::class, 'distributor_id');
+        return $this->hasOne(User::class, 'id','distributor_id');
     }
 
     public function products()

@@ -1,6 +1,7 @@
 @extends('frontend.master');
 
 @section('content')
+    @include('frontend.partials.banner')
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">

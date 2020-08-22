@@ -1,7 +1,7 @@
 @extends('frontend.master');
 
 @section('content')
-
+    @include('frontend.partials.banner')
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
@@ -13,7 +13,8 @@
             </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
+                <form action="{{ route('checkout', $order->id)}}" method="post" role="form" enctype="multipart/form-data">
+            	    @csrf 
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
@@ -96,12 +97,12 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
                                 <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
+                                    @foreach($orderDetails as $orderDetail)
+                                    <li>{{ $orderDetail->product->title }} <span>${{ $orderDetail->price }}</span></li>
+                                    @endforeach
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                <div class="checkout__order__subtotal">Subtotal <span>${{ $order->total_amount }}</span></div>
+                                <div class="checkout__order__total">Total <span>${{ $order->paid_amount }}</span></div>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">
                                         Create an account?

@@ -1,6 +1,7 @@
 @extends('frontend.master');
 
 @section('content')
+    @include('frontend.partials.banner')
     <!-- Contact Section Begin -->
     <section class="contact spad">
         <div class="container">

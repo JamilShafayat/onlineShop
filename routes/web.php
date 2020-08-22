@@ -59,12 +59,14 @@ Route::get('/logout', 'Frontend\AuthController@logout')->name('logout');
 Route::get('/productList', 'Frontend\ProductController@showList')->name('productList');
 Route::get('/productDetails/{id}', 'Frontend\ProductController@showDetails')->name('productDetails');
 
-Route::get('/shopingCart', 'Frontend\CartController@showCart')->name('shopingCart');
-Route::get('/checkout', 'Frontend\CartController@showCheckout')->name('checkout');
-Route::post('/checkout', 'Frontend\CartController@processCheckout')->name('checkout');
-
 Route::get('/contact', 'Frontend\ContactController@showContact')->name('contact');
 
+Route::group(['middleware'=>'auth'], function(){
+    Route::post('/addToCart/{id}', 'Frontend\CartController@addToCart')->name('addToCart');
+    Route::get('/shopingCart', 'Frontend\CartController@showCart')->name('shopingCart');
+    Route::get('/checkout/{id}', 'Frontend\CartController@showCheckout')->name('checkout');
+    Route::post('/checkout/{id}', 'Frontend\CartController@processCheckout')->name('checkout');
+});
 
 /*
 |--------------------------------------------------------------------------

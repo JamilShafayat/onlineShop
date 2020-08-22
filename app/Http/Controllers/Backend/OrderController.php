@@ -41,14 +41,14 @@ class OrderController extends Controller
 
   public function update(Request $request, $id)
   {
-    $order= Order::find($id);
+    $order = Order::find($id);
 
-    if (auth()->user()->type =='admin') {
+    if (auth()->user()->user_type_id == 1) {
 
       $order->update([
 
         'distributor_id'   => $request->distributor_id,
-        'status'           =>'processing',
+        'status'           =>$request->status,
       ]);
 
     }else{
