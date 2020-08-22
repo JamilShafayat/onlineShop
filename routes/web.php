@@ -51,7 +51,7 @@ Route::get('/', function () {
 Route::get('/', 'Frontend\AuthController@showHome')->name('main');
 Route::get('/home', 'Frontend\AuthController@showHome')->name('main');
 Route::get('/registration', 'Frontend\AuthController@showRegistration')->name('registration');
-Route::post('/registration', 'Frontend\AuthController@processRegistration')->name('registration');
+Route::post('/registration', 'Backend\UserController@store')->name('registration');
 Route::get('/login', 'Frontend\AuthController@showLogin')->name('login');
 Route::post('/login', 'Frontend\AuthController@processLogin')->name('login');
 Route::get('/logout', 'Frontend\AuthController@logout')->name('logout');
@@ -66,21 +66,30 @@ Route::post('/checkout', 'Frontend\CartController@processCheckout')->name('check
 Route::get('/contact', 'Frontend\ContactController@showContact')->name('contact');
 
 
-Route::get('/dashboard', 'Backend\DashboardController@showDashboard')->name('dashboard');
-Route::get('/showAll', 'Backend\DashboardController@showAll')->name('showAll');
-//  Configarations
-Route::resource('area', 'Backend\AreaController');
-Route::resource('userType', 'Backend\UserTypeController');
-Route::resource('user', 'Backend\UserController');
-Route::resource('category', 'Backend\CategoryController');
-Route::resource('product', 'Backend\ProductController');
-Route::resource('order', 'Backend\OrderController');
-Route::resource('task', 'Backend\taskController');
+/*
+|--------------------------------------------------------------------------
+| Backend
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/pdfExport/{id}','Backend\OrderController@pdfExport')->name('pdfExport');
-Route::get('/report','Backend\OrderController@generateReport')->name('report');
+
 Route::group(['middleware'=>'auth'], function(){
 
+    Route::get('/dashboard', 'Backend\DashboardController@showDashboard')->name('dashboard');
 
+    //  Configarations
+    Route::resource('area', 'Backend\AreaController');
+    Route::resource('userType', 'Backend\UserTypeController');
+    Route::resource('user', 'Backend\UserController');
+    Route::resource('category', 'Backend\CategoryController');
+    Route::resource('product', 'Backend\ProductController');
+    Route::resource('order', 'Backend\OrderController');
+    Route::resource('task', 'Backend\taskController');
 
+    Route::get('/pdfExport/{id}','Backend\OrderController@pdfExport')->name('pdfExport');
+    Route::get('/report','Backend\OrderController@generateReport')->name('report');
 });
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

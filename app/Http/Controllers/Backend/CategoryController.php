@@ -43,9 +43,9 @@ class CategoryController extends Controller
 
         Category::create([
 
-            'name'          =>$request->name,
-            'banner'        =>$file_name,
-            'category_id'   =>$request->category_id,
+            'name'          => $request->name,
+            'banner'        => isset($file_name) ? $file_name : NULL,
+            'category_id'   => $request->category_id,
         ]);
 
         return redirect()->back()->with(['status' => 'Category created successfully']);

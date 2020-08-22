@@ -1,7 +1,7 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-src">
-                    <a>
+                    <a href="{{ asset('home')}}">
                         <img src="{{ asset('public/assets/images/logo-inverse.png') }}" alt="">
                     </a>
                 </div>
@@ -16,36 +16,12 @@
                         <button class="close"></button>
                     </div>
                     <ul class="header-menu nav">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('userType.index')}}" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
                                 User Types
                             </a>
-                        </li>
-                        <li class="btn-group nav-item">
-                            <a href="{{ route('user.index')}}" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Users
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="{{ route('category.index')}}" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Category
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="{{ route('product.index')}}" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Products
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="{{ route('order.index')}}" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Orders
-                            </a>
-                        </li>
+                        </li> -->
                     </ul>        
                 </div>
                 <div class="app-header-right">
@@ -57,29 +33,26 @@
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                             <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/1.jpg') }}" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                                <h6 type="button" tabindex="-1" class="dropdown-header">
+                                                    <a href="{{ asset('logout')}}">
+                                                        Log Out
+                                                    </a>
+                                                </h6>
+                                                <div tabindex="-1" class="dropdown-divider"></div>
+                                                <button type="button" tabindex="0" class="dropdown-item">User Profile</button>
+                                                <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                            </div>
                                         </a>
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                            <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                            <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                            <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                            <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alina Mclourd
+                                        {{ auth()->user()->user_name}}
                                     </div>
                                     <div class="widget-subheading">
-                                        VP People Manager
+                                        {{ auth()->user()->userType->name}}
                                     </div>
-                                </div>
-                                <div class="widget-content-right header-user-info ml-3">
-                                    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>

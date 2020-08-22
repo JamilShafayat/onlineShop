@@ -15,10 +15,10 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">Dashboard</div>
-                                                    <div class="widget-subheading">Last year expenses</div>
+                                                    <div class="widget-subheading">Total Clients Profit</div>
                                                 </div>
                                                 <div class="widget-content-right">
-                                                    <div class="widget-numbers text-white"><span>1896</span></div>
+                                                    <div class="widget-numbers text-white"><span>$ 568</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,29 +94,458 @@
                                 </a>
                             </li>
                         </ul>
+
+
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-animated1-0" role="tabpanel">
-                                <div class="page-title-actions">
-                                    <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
-                                        <i class="fa fa-star"></i>
-                                    </button>
-                                    <div class="d-inline-block dropdown">
-                                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                                            <span class="btn-icon-wrapper pr-2 opacity-7">
-                                                <i class="fa fa-business-time fa-w-20"></i>
-                                            </span>
-                                            Create Category
-                                        </button>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-6">
+                                        <div class="mb-3 card">
+                                            <div class="card-header-tab card-header-tab-animation card-header">
+                                                <div class="card-header-title">
+                                                    <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                                                    Sales Report
+                                                </div>
+                                                <ul class="nav">
+                                                    <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
+                                                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade show active" id="tabs-eg-77">
+                                                        <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                                                            <div class="widget-chat-wrapper-outer">
+                                                                <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
+                                                                    <canvas id="canvas"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">Top Authors</h6>
+                                                        <div class="scroll-area-sm">
+                                                            <div class="scrollbar-container">
+                                                                <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                                                                    <li class="list-group-item">
+                                                                        <div class="widget-content p-0">
+                                                                            <div class="widget-content-wrapper">
+                                                                                <div class="widget-content-left mr-3">
+                                                                                    <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/9.jpg') }}" alt="">
+                                                                                </div>
+                                                                                <div class="widget-content-left">
+                                                                                    <div class="widget-heading">Ella-Rose Henry</div>
+                                                                                    <div class="widget-subheading">Web Developer</div>
+                                                                                </div>
+                                                                                <div class="widget-content-right">
+                                                                                    <div class="font-size-xlg text-muted">
+                                                                                        <small class="opacity-5 pr-1">$</small>
+                                                                                        <span>129</span>
+                                                                                        <small class="text-danger pl-2">
+                                                                                            <i class="fa fa-angle-down"></i>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <div class="widget-content p-0">
+                                                                            <div class="widget-content-wrapper">
+                                                                                <div class="widget-content-left mr-3">
+                                                                                    <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/5.jpg') }}" alt="">
+                                                                                </div>
+                                                                                <div class="widget-content-left">
+                                                                                    <div class="widget-heading">Ruben Tillman</div>
+                                                                                    <div class="widget-subheading">UI Designer</div>
+                                                                                </div>
+                                                                                <div class="widget-content-right">
+                                                                                    <div class="font-size-xlg text-muted">
+                                                                                        <small class="opacity-5 pr-1">$</small>
+                                                                                        <span>54</span>
+                                                                                        <small class="text-success pl-2">
+                                                                                            <i class="fa fa-angle-up"></i>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <div class="widget-content p-0">
+                                                                            <div class="widget-content-wrapper">
+                                                                                <div class="widget-content-left mr-3">
+                                                                                    <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/4.jpg') }}" alt="">
+                                                                                </div>
+                                                                                <div class="widget-content-left">
+                                                                                    <div class="widget-heading">Vinnie Wagstaff</div>
+                                                                                    <div class="widget-subheading">Java Programmer</div>
+                                                                                </div>
+                                                                                <div class="widget-content-right">
+                                                                                    <div class="font-size-xlg text-muted">
+                                                                                        <small class="opacity-5 pr-1">$</small>
+                                                                                        <span>429</span>
+                                                                                        <small class="text-warning pl-2">
+                                                                                            <i class="fa fa-dot-circle"></i>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <div class="widget-content p-0">
+                                                                            <div class="widget-content-wrapper">
+                                                                                <div class="widget-content-left mr-3">
+                                                                                    <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/3.jpg') }}" alt="">
+                                                                                </div>
+                                                                                <div class="widget-content-left">
+                                                                                    <div class="widget-heading">Ella-Rose Henry</div>
+                                                                                    <div class="widget-subheading">Web Developer</div>
+                                                                                </div>
+                                                                                <div class="widget-content-right">
+                                                                                    <div class="font-size-xlg text-muted">
+                                                                                        <small class="opacity-5 pr-1">$</small>
+                                                                                        <span>129</span>
+                                                                                        <small class="text-danger pl-2">
+                                                                                            <i class="fa fa-angle-down"></i>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <div class="widget-content p-0">
+                                                                            <div class="widget-content-wrapper">
+                                                                                <div class="widget-content-left mr-3">
+                                                                                    <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/2.jpg') }}" alt="">
+                                                                                </div>
+                                                                                <div class="widget-content-left">
+                                                                                    <div class="widget-heading">Ruben Tillman</div>
+                                                                                    <div class="widget-subheading">UI Designer</div>
+                                                                                </div>
+                                                                                <div class="widget-content-right">
+                                                                                    <div class="font-size-xlg text-muted">
+                                                                                        <small class="opacity-5 pr-1">$</small>
+                                                                                        <span>54</span>
+                                                                                        <small class="text-success pl-2">
+                                                                                            <i class="fa fa-angle-up"></i>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6">
+                                        <div class="mb-3 card">
+                                            <div class="card-header-tab card-header">
+                                                <div class="card-header-title">
+                                                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                                    Bandwidth Reports
+                                                </div>
+                                                <div class="btn-actions-pane-right">
+                                                    <div class="nav">
+                                                        <a href="javascript:void(0);" class="border-0 btn-pill btn-wide btn-transition active btn btn-outline-alternate">Tab 1</a>
+                                                        <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt">Tab 2</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade active show" id="tab-eg-55">
+                                                    <div class="widget-chart p-3">
+                                                        <div style="height: 350px">
+                                                            <canvas id="line-chart"></canvas>
+                                                        </div>
+                                                        <div class="widget-chart-content text-center mt-5">
+                                                            <div class="widget-description mt-0 text-warning">
+                                                                <i class="fa fa-arrow-left"></i>
+                                                                <span class="pl-1">175.5%</span>
+                                                                <span class="text-muted opacity-8 pl-1">increased server resources</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-2 card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="widget-content">
+                                                                    <div class="widget-content-outer">
+                                                                        <div class="widget-content-wrapper">
+                                                                            <div class="widget-content-left">
+                                                                                <div class="widget-numbers fsize-3 text-muted">63%</div>
+                                                                            </div>
+                                                                            <div class="widget-content-right">
+                                                                                <div class="text-muted opacity-6">Generated Leads</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="widget-progress-wrapper mt-1">
+                                                                            <div class="progress-bar-sm progress-bar-animated-alt progress">
+                                                                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width: 63%;"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="widget-content">
+                                                                    <div class="widget-content-outer">
+                                                                        <div class="widget-content-wrapper">
+                                                                            <div class="widget-content-left">
+                                                                                <div class="widget-numbers fsize-3 text-muted">32%</div>
+                                                                            </div>
+                                                                            <div class="widget-content-right">
+                                                                                <div class="text-muted opacity-6">Submitted Tickers</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="widget-progress-wrapper mt-1">
+                                                                            <div class="progress-bar-sm progress-bar-animated-alt progress">
+                                                                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="widget-content">
+                                                                    <div class="widget-content-outer">
+                                                                        <div class="widget-content-wrapper">
+                                                                            <div class="widget-content-left">
+                                                                                <div class="widget-numbers fsize-3 text-muted">71%</div>
+                                                                            </div>
+                                                                            <div class="widget-content-right">
+                                                                                <div class="text-muted opacity-6">Server Allocation</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="widget-progress-wrapper mt-1">
+                                                                            <div class="progress-bar-sm progress-bar-animated-alt progress">
+                                                                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="widget-content">
+                                                                    <div class="widget-content-outer">
+                                                                        <div class="widget-content-wrapper">
+                                                                            <div class="widget-content-left">
+                                                                                <div class="widget-numbers fsize-3 text-muted">41%</div>
+                                                                            </div>
+                                                                            <div class="widget-content-right">
+                                                                                <div class="text-muted opacity-6">Generated Leads</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="widget-progress-wrapper mt-1">
+                                                                            <div class="progress-bar-sm progress-bar-animated-alt progress">
+                                                                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100" style="width: 41%;"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="mb-0">jamil
-                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-header">Active Users
+                                                <div class="btn-actions-pane-right">
+                                                    <div role="group" class="btn-group-sm btn-group">
+                                                        <button class="active btn btn-focus">Last Week</button>
+                                                        <button class="btn btn-focus">All Month</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">#</th>
+                                                            <th>Name</th>
+                                                            <th class="text-center">City</th>
+                                                            <th class="text-center">Status</th>
+                                                            <th class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="text-center text-muted">#345</td>
+                                                        <td>
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        <div class="widget-content-left">
+                                                                            <img width="40" class="rounded-circle" src="{{ asset('public/assets/images/avatars/4.jpg') }}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-left flex2">
+                                                                        <div class="widget-heading">John Doe</div>
+                                                                        <div class="widget-subheading opacity-7">Web Developer</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">Madrid</td>
+                                                        <td class="text-center">
+                                                            <div class="badge badge-warning">Pending</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center text-muted">#347</td>
+                                                        <td>
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        <div class="widget-content-left">
+                                                                            <img width="40" class="rounded-circle" src="{{ asset('public/assets/images/avatars/3.jpg') }}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-left flex2">
+                                                                        <div class="widget-heading">Ruben Tillman</div>
+                                                                        <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">Berlin</td>
+                                                        <td class="text-center">
+                                                            <div class="badge badge-success">Completed</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Details</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center text-muted">#321</td>
+                                                        <td>
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        <div class="widget-content-left">
+                                                                            <img width="40" class="rounded-circle" src="{{ asset('public/assets/images/avatars/2.jpg') }}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-left flex2">
+                                                                        <div class="widget-heading">Elliot Huber</div>
+                                                                        <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">London</td>
+                                                        <td class="text-center">
+                                                            <div class="badge badge-danger">In Progress</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Details</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center text-muted">#55</td>
+                                                        <td>
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        <div class="widget-content-left">
+                                                                            <img width="40" class="rounded-circle" src="{{ asset('public/assets/images/avatars/1.jpg') }}" alt=""></div>
+                                                                    </div>
+                                                                    <div class="widget-content-left flex2">
+                                                                        <div class="widget-heading">Vinnie Wagstaff</div>
+                                                                        <div class="widget-subheading opacity-7">UI Designer</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">Amsterdam</td>
+                                                        <td class="text-center">
+                                                            <div class="badge badge-info">On Hold</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Details</button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="d-block text-center card-footer">
+                                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                                <button class="btn-wide btn btn-success">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="tab-pane" id="tab-animated1-1" role="tabpanel">
-                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown
-                                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                                <div class="row col-md-12">
+                                    <!-- <div class="app-page-title">
+                                        <div class="page-title-wrapper">
+                                            <div class="page-title-actions">
+                                                <div class="d-inline-block dropdown">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="productModal" data-toggle="modal" data-target=".productModal">
+                                                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                            <i class="fa fa-business-time fa-w-20"></i>
+                                                        </span>
+                                                        Order
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="card-body table-border-style">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sl.</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Customer Contact</th>
+                                                        <th>Address</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Payment Status</th>
+                                                        <th>Operational Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $i = 0;
+                                                    @endphp
+                                                    @foreach($orders as $order)
+                                                    <tr>
+                                                        <td>{{ ++$i }}</td>
+                                                        <td>{{ $order->customer_id ? $order->customer->user_name : $order->customer_name }}</td>
+                                                        <td>{{ $order->customer_id ? $order->customer->phone_no : $order->customer_phone_number }}</td>
+                                                        <td>{{ $order->customer_id ? $order->customer->address : $order->address }}</td>
+                                                        <td>{{ $oreder->paid_amount}}</td>
+                                                        <td>{{ $oreder->payment_status}}</td>
+                                                        <td>{{ $oreder->sale_operational_statusprice}}</td>
+                                                        <td>
+                                                            <a href="{{ route('oreder.show', $oreder->id)}}" class="mr-2" title="view" ><info class="fa fa-eye bg-white"></i></a>
+                                                            <a href="{{ route('oreder.edit', $oreder->id)}}" class="mr-2" title="edit" ><info class="fa fa-edit bg-white"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-2" role="tabpanel">
                                 <div class="row col-md-12">
@@ -128,7 +557,7 @@
                                                         <span class="btn-icon-wrapper pr-2 opacity-7">
                                                             <i class="fa fa-business-time fa-w-20"></i>
                                                         </span>
-                                                        Create New
+                                                        Create New Product
                                                     </button>
                                                 </div>
                                             </div>
@@ -172,13 +601,78 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-3" role="tabpanel">
-                                <p class="mb-0">test</p>
+                                <div class="row col-md-12">
+                                    <div class="app-page-title">
+                                        <div class="page-title-wrapper">
+                                            <div class="page-title-actions">
+                                                <div class="d-inline-block dropdown">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="productModal" data-toggle="modal" data-target=".categoryModal">
+                                                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                            <i class="fa fa-business-time fa-w-20"></i>
+                                                        </span>
+                                                        Create New Category
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body table-border-style">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sl.</th>
+                                                        <th>Name</th>
+                                                        <th>Slug</th>
+                                                        <th>Banner</th>
+                                                        <th>Parent Category</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $i = 0;
+                                                    @endphp
+                                                    @foreach($categoryList as $category)
+                                                    <tr>
+                                                        <td>{{ ++$i }}</td>
+                                                        <td>{{ $category->name}}</td>
+                                                        <td>{{ $category->slug}}</td>
+                                                        <td>{{ $category->banner}}</td>
+                                                        <td>{{ $category->parent_category ? $category->parent_category->name : ''}}</td>
+                                                        <td>{{ $category->status}}</td>
+                                                        <td>
+                                                            <a href="{{ route('category.show', $category->id)}}" class="mr-2" title="view" ><info class="fa fa-eye bg-white"></i></a>
+                                                            <a href="{{ route('category.edit', $category->id)}}" class="mr-2" title="edit" ><info class="fa fa-edit bg-white"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane" id="tab-animated1-4" role="tabpanel">
                                 <div class="row col-md-12">
+                                    <div class="app-page-title">
+                                        <div class="page-title-wrapper">
+                                            <div class="page-title-actions">
+                                                <div class="d-inline-block dropdown">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="userModal" data-toggle="modal" data-target=".userModal">
+                                                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                            <i class="fa fa-business-time fa-w-20"></i>
+                                                        </span>
+                                                        Create New User
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="card-body table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table table-dark">
+                                            <table class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Sl.</th>
@@ -220,7 +714,7 @@
 </div>
 @endsection
 
-<!-- Large modal -->
+<!-- Large modal for create user-->
 <div class="modal fade userModal" tabindex="-1" id="userModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -311,7 +805,7 @@
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom01">Birth Date</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="birth_date" placeholder="birth date">
+                                    <input type="date" class="form-control" id="validationCustom01" name="birth_date" placeholder="birth date">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -400,7 +894,7 @@
     </div>
 </div>
 
-<!-- Large modal Product-->
+<!-- Large modal for create Product-->
 <div class="modal fade productModal" tabindex="-1" id="productModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -504,6 +998,87 @@
                                         <option value="">Select Supplier</option>
                                         @foreach($suppliers as $supplier)
                                         <option value="{{ $supplier->id}}">{{ $supplier->user_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info float-right" type="submit">Create</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal for create category-->
+<div class="modal fade categoryModal" tabindex="-1" id="categoryModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create A New Category</h5>
+                        <form action="{{ route('category.store')}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
+                             @csrf
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Name">
+                                    <div class="invalid-feedback">
+                                        Please choose a unique Category Name.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Banner</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="validationCustomUsername" name="image"  placeholder="Banner" aria-describedby="inputGroupPrepend">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom03">Parent Category</label>
+                                    <select id="validationCustom03"  name="category_id" class="form-control">
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id}}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                     <div class="valid-feedback">
