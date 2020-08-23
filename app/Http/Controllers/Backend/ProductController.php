@@ -38,17 +38,15 @@ class ProductController extends Controller
 
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        //dd($request->all());
         if ($request->hasFile('product_pic')){
 
             $product_pic = $request->file('product_pic');
-            $file_name = uniqid('product_pic',true).Str::random(10).'.'.$product_pic->getClientOriginalExtension();
-
+            $file_name = uniqid('product_pic_',true).Str::random(10).'.'.$product_pic->getClientOriginalExtension();
+            
             if($product_pic->isValid()){
-              $product_pic->storeAs('image',$file_name);
+                $product_pic->storeAs('uploads', $file_name, ['disk' => 'my_files']);
             }
         }
-        //dd($file_name);
 
         Product::create([
             'title'         =>$request->title,
