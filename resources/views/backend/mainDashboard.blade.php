@@ -632,192 +632,13 @@
                                                         <td>{{ $product->sale_price}}</td>
                                                         <td>{{ $product->quantity}}</td>
                                                         <td>
-                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-target="#updateProductModal{{ $product->id}}">
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-backdrop="" data-target=".updateProductModal{{ $product->id}}">
                                                                 <span class="btn-icon-wrapper pr-2 opacity-7">
                                                                     <i class="nav-link-icon fa fa-edit"></i>
                                                                 </span>
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    
-                                                    <!-- Large modal for Update Product-->
-                                                    <div class="modal fade" id="updateProductModal{{ $product->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-xl" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <div class="main-card mb-3 card">
-                                                                        <div class="card-body">
-                                                                            <h5 class="card-title">chek product details and update if needer</h5>
-                                                                            <form action="{{ route('product.update', $product->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
-                                                                                @csrf
-                                                                                <div class="form-row">
-                                                                                    <div class="col-md-8 mb-3">
-                                                                                        <label for="validationCustomUsername">Image</label>
-                                                                                        <div class="input-group">
-                                                                                            <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 200px; width: 200px; margin: 20px auto !important; border-radius: 30%;">
-                                                                                            <input type="file" class="form-control" id="validationCustomUsername" name="product_pic"  value="image" aria-describedby="inputGroupPrepend">
-                                                                                            <div class="valid-feedback">
-                                                                                                Looks good!
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom02">Stock</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->in_stock }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-row">
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom01">Title</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->title}}">
-                                                                                        <div class="invalid-feedback">
-                                                                                            Please choose a unique title.
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom02">Brand</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->brand }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom03">Category</label>
-                                                                                        <select id="validationCustom03"  name="category_id" class="form-control" required>
-                                                                                        <option value="{{ $product->category_id }}">{{ $product->category->name }}</option>
-                                                                                            <option value="">Change Category</option>
-                                                                                            @foreach($categories as $category)
-                                                                                            <option value="{{ $category->id}}">{{ $category->name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        <div class="invalid-feedback">
-                                                                                            Please provide a valid type.
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-row">
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom01">Slug</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->slug}}">
-                                                                                        <div class="invalid-feedback">
-                                                                                            Please choose a unique title.
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom04">Supplier</label>
-                                                                                        <select id="validationCustom04"  name="supplier_id" class="form-control" required>
-                                                                                        <option value="{{ $product->supplier_id }}">{{ $product->supplier ? $product->supplier->name : ''}}</option>
-                                                                                            <option value="">Change Supplier</option>
-                                                                                            @foreach($suppliers as $supplier)
-                                                                                            <option value="{{ $supplier->id}}">{{ $supplier->user_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom02">Status</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->status }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-row">
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustomUsername">Bought Price</label>
-                                                                                        <div class="input-group">
-                                                                                            <input type="text" class="form-control" id="validationCustomUsername" name="bought_price" value="{{ $product->bought_price }}" aria-describedby="inputGroupPrepend" required>
-                                                                                            <div class="invalid-feedback">
-                                                                                                Please choose a unique bought price.
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom01">Sale Price</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom01" name="sale_price" value="{{ $product->sale_price }}" required>
-                                                                                        <div class="invalid-feedback">
-                                                                                            Please choose a unique sale price.
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom02">Offer Price</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom02" name="offer_price" value="{{ $product->offer_price }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-row">
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustomUsername">Quantity</label>
-                                                                                        <div class="input-group">
-                                                                                            <input type="text" class="form-control" id="validationCustomUsername" name="quantity" value="{{ $product->quantity }}" aria-describedby="inputGroupPrepend" required>
-                                                                                            <div class="invalid-feedback">
-                                                                                                Please choose a unique email.
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom02">Unit</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom02" name="unit" value="{{ $product->unit }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 mb-3">
-                                                                                        <label for="validationCustom01">Description</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom01" name="description" value="{{ $product->description }}">
-                                                                                        <div class="valid-feedback">
-                                                                                            Looks good!
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <div class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                                                                        <label class="form-check-label" for="invalidCheck">
-                                                                                            Agree to terms and conditions
-                                                                                        </label>
-                                                                                        <div class="invalid-feedback">
-                                                                                            You must agree before submitting.
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <button class="btn btn-info float-right" type="submit">Update</button>
-                                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                                            </form>
-
-                                                                            <script>
-                                                                                // Example starter JavaScript for disabling form submissions if there are invalid fields
-                                                                                (function() {
-                                                                                    'use strict';
-                                                                                    window.addEventListener('load', function() {
-                                                                                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                                                                        var forms = document.getElementsByClassName('needs-validation');
-                                                                                        // Loop over them and prevent submission
-                                                                                        var validation = Array.prototype.filter.call(forms, function(form) {
-                                                                                            form.addEventListener('submit', function(event) {
-                                                                                                if (form.checkValidity() === false) {
-                                                                                                    event.preventDefault();
-                                                                                                    event.stopPropagation();
-                                                                                                }
-                                                                                                form.classList.add('was-validated');
-                                                                                            }, false);
-                                                                                        });
-                                                                                    }, false);
-                                                                                })();
-                                                                            </script>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -1361,6 +1182,185 @@
                                 </div>
                             </div>
                             <button class="btn btn-info float-right" type="submit">Create</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal for Update Product-->
+<div class="modal fade updateProductModal{{ $product->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">chek product details and update if needer</h5>
+                        <form action="{{ route('product.update', $product->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
+                            @csrf
+                            <div class="form-row">
+                                <div class="col-md-8 mb-3">
+                                    <label for="validationCustomUsername">Image</label>
+                                    <div class="input-group">
+                                        <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 200px; width: 200px; margin: 20px auto !important; border-radius: 30%;">
+                                        <input type="file" class="form-control" id="validationCustomUsername" name="product_pic"  value="image" aria-describedby="inputGroupPrepend">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Stock</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->in_stock }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Title</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->title}}">
+                                    <div class="invalid-feedback">
+                                        Please choose a unique title.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Brand</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->brand }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom03">Category</label>
+                                    <select id="validationCustom03"  name="category_id" class="form-control" required>
+                                    <option value="{{ $product->category_id }}">{{ $product->category->name }}</option>
+                                        <option value="">Change Category</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id}}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid type.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Slug</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->slug}}">
+                                    <div class="invalid-feedback">
+                                        Please choose a unique title.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom04">Supplier</label>
+                                    <select id="validationCustom04"  name="supplier_id" class="form-control" required>
+                                    <option value="{{ $product->supplier_id }}">{{ $product->supplier ? $product->supplier->name : ''}}</option>
+                                        <option value="">Change Supplier</option>
+                                        @foreach($suppliers as $supplier)
+                                        <option value="{{ $supplier->id}}">{{ $supplier->user_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Status</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->status }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Bought Price</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="validationCustomUsername" name="bought_price" value="{{ $product->bought_price }}" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a unique bought price.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Sale Price</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="sale_price" value="{{ $product->sale_price }}" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a unique sale price.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Offer Price</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="offer_price" value="{{ $product->offer_price }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomUsername">Quantity</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="validationCustomUsername" name="quantity" value="{{ $product->quantity }}" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a unique email.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom02">Unit</label>
+                                    <input type="text" class="form-control" id="validationCustom02" name="unit" value="{{ $product->unit }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustom01">Description</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="description" value="{{ $product->description }}">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info float-right" type="submit">Update</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </form>
 
