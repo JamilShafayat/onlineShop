@@ -1,4 +1,4 @@
-@extends('backend.master');
+@extends('backend.master')
 
 @section('content')
 <div class="tab-content">
@@ -632,12 +632,13 @@
                                                         <td>{{ $product->sale_price}}</td>
                                                         <td>{{ $product->quantity}}</td>
                                                         <td>
-                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-backdrop="" data-target=".updateProductModal{{ $product->id}}">
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-target="#myModal-{{ $product->id }}">
                                                                 <span class="btn-icon-wrapper pr-2 opacity-7">
                                                                     <i class="nav-link-icon fa fa-edit"></i>
                                                                 </span>
                                                             </button>
                                                         </td>
+                                                        <!-- Large modal for Update Product-->
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -1068,7 +1069,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Create A New Product</h5>
                         <form action="{{ route('product.store')}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
-                             @csrf
+                            @csrf
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom01">Title</label>
@@ -1212,9 +1213,10 @@
     </div>
 </div>
 
-<!-- Large modal for Update Product-->
-<div class="modal fade updateProductModal{{ $product->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+
+@foreach($products as $product)
+<div class="modal fade" id="myModal-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="main-card mb-3 card">
@@ -1222,29 +1224,33 @@
                         <h5 class="card-title">chek product details and update if needer</h5>
                         <form action="{{ route('product.update', $product->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
                             @csrf
+                            @method('put')
                             <div class="form-row">
-                                <div class="col-md-8 mb-3">
-                                    <label for="validationCustomUsername">Image</label>
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustomUsername"></label>
                                     <div class="input-group">
-                                        <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 200px; width: 200px; margin: 20px auto !important; border-radius: 30%;">
-                                        <input type="file" class="form-control" id="validationCustomUsername" name="product_pic"  value="image" aria-describedby="inputGroupPrepend">
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
+                                        <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 180px; width: 180px; margin: 20px auto !important; border-radius: 30%;">
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom02">Stock</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->in_stock }}">
+                                <div class="col-md-8 mb-8">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustomUsername">Change Image</label>
+                                    <input type="file" class="form-control col-md-6 mb-3" id="validationCustomUsername" name="product_pic" value="image" aria-describedby="inputGroupPrepend">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control float-right btn btn-success col-md-6 mb-3" id="validationCustom02" name="brand" value="Stock - {{ $product->in_stock == 1 ? "Available" : "Stock Over" }}" style="margin-top: 29px !important;">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom01">Title</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->title}}">
+                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->title}}" required>
                                     <div class="invalid-feedback">
                                         Please choose a unique title.
                                     </div>
@@ -1260,7 +1266,6 @@
                                     <label for="validationCustom03">Category</label>
                                     <select id="validationCustom03"  name="category_id" class="form-control" required>
                                     <option value="{{ $product->category_id }}">{{ $product->category->name }}</option>
-                                        <option value="">Change Category</option>
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id}}">{{ $category->name }}</option>
                                         @endforeach
@@ -1273,14 +1278,14 @@
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom01">Slug</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->slug}}">
+                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->slug}}" required>
                                     <div class="invalid-feedback">
-                                        Please choose a unique title.
+                                        Do not make this field empty.
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom04">Supplier</label>
-                                    <select id="validationCustom04"  name="supplier_id" class="form-control" required>
+                                    <select id="validationCustom04"  name="supplier_id" class="form-control">
                                     <option value="{{ $product->supplier_id }}">{{ $product->supplier ? $product->supplier->name : ''}}</option>
                                         <option value="">Change Supplier</option>
                                         @foreach($suppliers as $supplier)
@@ -1305,7 +1310,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="validationCustomUsername" name="bought_price" value="{{ $product->bought_price }}" aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
-                                            Please choose a unique bought price.
+                                            Do not make make bought price column empty.
                                         </div>
                                     </div>
                                 </div>
@@ -1313,7 +1318,7 @@
                                     <label for="validationCustom01">Sale Price</label>
                                     <input type="text" class="form-control" id="validationCustom01" name="sale_price" value="{{ $product->sale_price }}" required>
                                     <div class="invalid-feedback">
-                                        Please choose a unique sale price.
+                                        Please fix sale price to sale the product.
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -1330,7 +1335,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="validationCustomUsername" name="quantity" value="{{ $product->quantity }}" aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
-                                            Please choose a unique email.
+                                            Do not make this field empty.
                                         </div>
                                     </div>
                                 </div>
@@ -1360,7 +1365,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-info float-right" type="submit">Update</button>
+                            <button class="btn btn-info float-right" type="submit">Update Product</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </form>
 
@@ -1390,6 +1395,7 @@
         </div>
     </div>
 </div>
+@endforeach
 <!-- Modal for Product-->
 
 

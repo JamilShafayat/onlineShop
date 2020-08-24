@@ -13,35 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
-
-Route::get('/a', function () {
-    return view('frontend.checkout');
-});
-
-Route::get('/b', function () {
-    return view('frontend.contact');
-});
-
-Route::get('/c', function () {
-    return view('frontend.shop-grid');
-});
-
-
-Route::get('/d', function () {
-    return view('frontend.shop-details');
-});
-
-Route::get('/e', function () {
-    return view('frontend.shoping-cart');
-});
-
-Route::get('/', function () {
-    return view('frontend.home');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Frontend

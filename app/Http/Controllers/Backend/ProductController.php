@@ -75,6 +75,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'title'         => 'required',
             'category_id'   => 'required',
@@ -95,7 +96,7 @@ class ProductController extends Controller
             $file_name = uniqid('product_pic',true).Str::random(10).'.'.$product_pic->getClientOriginalExtension();
 
             if($product_pic->isValid()){
-              $product_pic->storeAs('image',$file_name);
+              $product_pic->storeAs('image', $file_name);
             }
 
             $data = Product::findOrFail($id);
