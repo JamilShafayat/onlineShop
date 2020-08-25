@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -34,10 +35,10 @@ class CategoryController extends Controller
         if ($request->hasFile('image')){
 
             $image = $request->file('image');
-            $file_name = uniqid('image',true).Str::random(10).'.'.$image->getClientOriginalExtension();
+            $file_name = uniqid('category_',true).Str::random(10).'.'.$image->getClientOriginalExtension();
 
             if($image->isValid()){
-              $image->storeAs('image',$file_name);
+                $image->storeAs('uploads', $file_name, ['disk' => 'my_files']);
             }
         }
 
@@ -53,10 +54,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $validator      = Validator::make($request->all(), [
 
             'name'          => 'required',
-            'category_id'   => 'required',
+            'slug'          => 'required',
+            'status'        => 'required',
         ]);
 
         if ($validator->fails()){
@@ -64,12 +67,31 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        if ($request->hasFile('image')){
+
+            $image = $request->file('image');
+            $file_name = uniqid('category_',true).Str::random(10).'.'.$image->getClientOriginalExtension();
+
+            if($image->isValid()){
+                $image->storeAs('uploads', $file_name, ['disk' => 'my_files']);
+            }
+        }
+
         $data = Category::findOrFail($id);
+
+        $old_banner  = public_path('uploads/').$data->banner;
+
+        if(isset($file_name)){
+
+            File::delete($old_banner);
+        }
 
         $data->update([
 
             'name'          =>$request->name,
+            'slug'          =>$request->slug,
             'category_id'   =>$request->category_id,
+            'banner'        =>isset($file_name) ? $file_name : $data->banner,
             'status'        =>$request->status,
         ]);
 

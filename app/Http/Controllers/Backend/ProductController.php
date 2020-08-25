@@ -42,7 +42,7 @@ class ProductController extends Controller
 
             $product_pic = $request->file('product_pic');
             $file_name = uniqid('product_pic_',true).Str::random(10).'.'.$product_pic->getClientOriginalExtension();
-            
+
             if($product_pic->isValid()){
                 $product_pic->storeAs('uploads', $file_name, ['disk' => 'my_files']);
             }
@@ -75,7 +75,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
         $validator = Validator::make($request->all(), [
             'title'         => 'required',
             'category_id'   => 'required',
@@ -96,9 +96,8 @@ class ProductController extends Controller
             $file_name = uniqid('product_pic',true).Str::random(10).'.'.$product_pic->getClientOriginalExtension();
 
             if($product_pic->isValid()){
-              $product_pic->storeAs('image', $file_name);
+                $product_pic->storeAs('uploads', $file_name, ['disk' => 'my_files']);
             }
-
             $data = Product::findOrFail($id);
 
             $data->update([

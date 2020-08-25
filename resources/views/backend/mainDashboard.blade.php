@@ -593,7 +593,7 @@
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
-                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="productModal" data-toggle="modal" data-target=".productModal">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-success" id="productModal" data-toggle="modal" data-target=".productModal">
                                                         <span class="btn-icon-wrapper pr-2 opacity-7">
                                                             <i class="nav-link-icon fa fa-plus"></i>
                                                         </span>
@@ -632,13 +632,12 @@
                                                         <td>{{ $product->sale_price}}</td>
                                                         <td>{{ $product->quantity}}</td>
                                                         <td>
-                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-target="#myModal-{{ $product->id }}">
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-success" data-toggle="modal" data-target="#myModal-{{ $product->id }}">
                                                                 <span class="btn-icon-wrapper pr-2 opacity-7">
                                                                     <i class="nav-link-icon fa fa-edit"></i>
                                                                 </span>
                                                             </button>
                                                         </td>
-                                                        <!-- Large modal for Update Product-->
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -655,11 +654,11 @@
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
-                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="productModal" data-toggle="modal" data-target=".categoryModal">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-success" id="productModal" data-toggle="modal" data-target=".categoryModal">
                                                         <span class="btn-icon-wrapper pr-2 opacity-7">
-                                                            <i class="nav-link-icon fa fa-edit"></i>
+                                                            <i class="nav-link-icon fa fa-plus"></i>
                                                         </span>
-                                                        Create New Category
+                                                        Create Category
                                                     </button>
                                                 </div>
                                             </div>
@@ -673,9 +672,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sl.</th>
-                                                        <th>Name</th>
-                                                        <th>Slug</th>
                                                         <th>Banner</th>
+                                                        <th>Name</th>
                                                         <th>Parent Category</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
@@ -688,14 +686,32 @@
                                                     @foreach($categoryList as $category)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
-                                                        <td>{{ $category->name}}</td>
-                                                        <td>{{ $category->slug}}</td>
-                                                        <td>{{ $category->banner}}</td>
-                                                        <td>{{ $category->parent_category ? $category->parent_category->name : ''}}</td>
-                                                        <td>{{ $category->status}}</td>
                                                         <td>
-                                                            <a href="{{ route('category.show', $category->id)}}" class="mr-2" title="view" ><info class="fa fa-eye bg-white"></i></a>
-                                                            <a href="{{ route('category.edit', $category->id)}}" class="mr-2" title="edit" ><info class="fa fa-edit bg-white"></i></a>
+                                                            <img class="avatar border-white" src="{{ url('public/uploads', $category->banner) }}" alt="..."/ style="height: 100px; width: 100px;">
+                                                        </td>
+                                                        <td>{{ $category->name}}</td>
+                                                        <td>{{ $category->parent_category ? $category->parent_category->name : ''}}</td>
+                                                        <td>
+                                                            @if($category->status == 1)
+                                                            <button type="" class="btn mr-2 mb-2 btn btn-success">
+                                                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                                    <i class="nav-link-icon fa fa-hdd-o" aria-hidden="true"></i>
+                                                                </span>
+                                                            </button>
+                                                            @else
+                                                            <button type="" class="btn mr-2 mb-2 btn btn-danger">
+                                                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                                    <i class="nav-link-icon fa fa-ban" aria-hidden="true"></i>
+                                                                </span>
+                                                            </button>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn mr-2 mb-2 btn btn-info" data-toggle="modal" data-target="#categoryModal-{{ $category->id }}">
+                                                                <span class="btn-icon-wrapper pr-2 opacity-7">
+                                                                    <i class="nav-link-icon fa fa-edit"></i>
+                                                                </span>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -1221,7 +1237,7 @@
             <div class="modal-body">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">chek product details and update if needer</h5>
+                        <h5 class="card-title">check product details and update if needed</h5>
                         <form action="{{ route('product.update', $product->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
                             @csrf
                             @method('put')
@@ -1278,7 +1294,7 @@
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom01">Slug</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="title" value="{{ $product->slug}}" required>
+                                    <input type="text" class="form-control" id="validationCustom01" name="slug" value="{{ $product->slug}}" required>
                                     <div class="invalid-feedback">
                                         Do not make this field empty.
                                     </div>
@@ -1298,7 +1314,7 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="validationCustom02">Status</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="brand" value="{{ $product->status }}">
+                                    <input type="text" class="form-control" id="validationCustom02" name="status" value="{{ $product->status }}">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
@@ -1482,6 +1498,120 @@
         </div>
     </div>
 </div>
+
+
+<!-- Large modal for update category-->
+@foreach($categoryList as $category)
+<div class="modal fade" id="categoryModal-{{ $category->id }}" tabindex="-1" id="categoryModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">check category details and update if needed</h5>
+                        <form action="{{ route('category.update', $category->id)}}" class="needs-validation" method="post" role="form" enctype="multipart/form-data" novalidate>
+                            @csrf
+                            @method('put')
+                            <div class="form-row">
+                                <div class="col-md-7 mb-3">
+                                    <div class="input-group">
+                                        <img class="avatar border-white" src="{{ url('public/uploads', $category->banner) }}" alt="..."/ style="height: 200px; width: 100%; margin: 20px auto !important;">
+                                        {{-- <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 180px; width: 180px; margin: 20px auto !important; border-radius: 30%;"> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3 float-right" style="margin-top: 153px !important;">
+                                    <label for="validationCustom01">Change Banner</label>
+                                    <input type="file" class="form-control" id="validationCustom01" name="image">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom01">Name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="name" value={{ $category->name }} required>
+                                    <div class="invalid-feedback">
+                                        Please choose a unique Category Name.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom01">Slug</label>
+                                    <input type="text" class="form-control" id="validationCustom01" name="slug" value={{ $category->slug }} required>
+                                    <div class="invalid-feedback">
+                                        Please choose a unique Category Name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustom03">Parent Category</label>
+                                    <select id="validationCustom03"  name="category_id" class="form-control">
+                                        <option value="{{ $category->category_id}}">{{ $category->parent_category ? $category->parent_category->name : '' }}</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id}}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="validationCustomUsername">Status</label>
+                                    <div class="input-group">
+                                        <select id="validationCustomUsername"  name="status" class="form-control">
+                                            <option value={{ $category->status }}>{{ $category->status == 1 ? "Active" : "Pending" }}</option>
+                                            <option value="0">Pending</option>
+                                            <option value="1">Active</option>
+                                        </select>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Agree to terms and conditions
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting.
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success float-right" type="submit">Update Category</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </form>
+
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+                            (function() {
+                                'use strict';
+                                window.addEventListener('load', function() {
+                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                    var forms = document.getElementsByClassName('needs-validation');
+                                    // Loop over them and prevent submission
+                                    var validation = Array.prototype.filter.call(forms, function(form) {
+                                        form.addEventListener('submit', function(event) {
+                                            if (form.checkValidity() === false) {
+                                                event.preventDefault();
+                                                event.stopPropagation();
+                                            }
+                                            form.classList.add('was-validated');
+                                        }, false);
+                                    });
+                                }, false);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <!-- Modal for category-->
 

@@ -22,12 +22,12 @@ class DashboardController extends Controller
     public function showDashboard(){
 
         $user = auth()->user();
-    	$categories = Category::all();
+    	$categories = Category::where('status', 1)->get();
         $products = Product::with('category','supplier')->get();
 
         $suppliers = User::where('user_type_id', 2)->where('status', 1)->get();
         $distributors = User::where('user_type_id', 3)->where('status', 1)->get();
-        $categoryList = Category::where('status', 1)->get();
+        $categoryList = Category::all();
 
         $users = User::all();
         $userTypes = UserType::where('status', 1)->get();
