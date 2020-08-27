@@ -2,7 +2,7 @@
             <div class="app-header__logo">
                 <div class="logo-src">
                     <a href="{{ asset('home')}}">
-                        <img src="{{ asset('public/assets/images/logo-inverse.png') }}" alt="">
+                        <img src="{{ asset('/assets/images/logo-inverse.png') }}" alt="">
                     </a>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="{{ asset('public/assets/images/avatars/1.jpg') }}" alt="">
+                                            <img width="42" class="rounded-circle" src="{{ asset('/assets/images/avatars/1.jpg') }}" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                                 <h6 type="button" tabindex="-1" class="dropdown-header">
