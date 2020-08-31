@@ -27,6 +27,13 @@ Route::get('/login', 'Frontend\AuthController@showLogin')->name('login');
 Route::post('/login', 'Frontend\AuthController@processLogin')->name('login');
 Route::get('/logout', 'Frontend\AuthController@logout')->name('logout');
 
+Route::get('login/github', 'Frontend\AuthController@redirectToProvider');
+Route::get('login/github/callback', 'Frontend\AuthController@handleProviderCallback');
+
+Route::get('login/facebook', 'Frontend\AuthController@loginViaFacebook');
+Route::get('login/facebook/callback', 'Frontend\AuthController@loginViaFacebook');
+
+
 Route::get('/productList', 'Frontend\ProductController@showList')->name('productList');
 Route::get('/productDetails/{id}', 'Frontend\ProductController@showDetails')->name('productDetails');
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\UserType;
@@ -9,6 +11,8 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Socialite;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -70,6 +74,55 @@ class AuthController extends Controller
             session()->flash('message', 'invalid User');
             return redirect()->back();
         }
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->stateless()->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        try {
+            $user = Socialite::driver('github')->stateless()->user();
+            dd($user);
+        } catch (\Exception $e) {
+            return redirect('/login')->with('error','Try after some time');
+        }
+        
+        // $existingUser = User::where('social_id', $user->id)->first();
+
+
+        // return 'hello';
+        // $user = Socialite::driver('github')->user();
+        // $user = Socialite::driver('github')->stateless();
+        // dd($user);
+        
+        
+        $user1 = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'user_name'         => $user->name,
+            'email'             => $user->email,
+            'password'          => bcrypt(123456),
+            'email_verified_at' => Carbon::now(),
+            'user_type_id'      => 4,
+        ]);
+
+        Auth::login($user1, true);
+        return redirect()->route('main');
+    }
+
+    public function loginViaFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function processLoginViaFacebook()
+    {
+        $user = Socialite::driver('facebook')->user();
+        dd($user);
+        // $user->token;
     }
 
     public function logout()
