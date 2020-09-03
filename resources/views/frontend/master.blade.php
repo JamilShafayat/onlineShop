@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
     @include('frontend.partials.header')
 </head>
@@ -11,5 +10,4 @@
     @include('frontend.partials.footer')
     @include('frontend.partials.script')
 </body>
-
 </html>

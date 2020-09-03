@@ -1,8 +1,8 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src">
+                <div class="logo-src mb-4">
                     <a href="{{ asset('home')}}">
-                        <img src="{{ asset('/assets/images/logo-inverse.png') }}" alt="">
+                        <img src="{{ asset('public/assets/img/logo.png') }}" alt="">
                     </a>
                 </div>
             </div>
@@ -15,14 +15,14 @@
                         </div>
                         <button class="close"></button>
                     </div>
-                    <ul class="header-menu nav">
-                        <!-- <li class="nav-item">
+                    <!-- <ul class="header-menu nav">
+                        <li class="nav-item">
                             <a href="{{ route('userType.index')}}" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
                                 User Types
                             </a>
-                        </li> -->
-                    </ul>        
+                        </li>
+                    </ul>         -->
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -31,7 +31,12 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="{{ asset('/assets/images/avatars/1.jpg') }}" alt="">
+                                            <div class="widget-heading">
+                                                {{ auth()->user()->user_name}}
+                                            </div>
+                                            <div class="widget-subheading">
+                                                {{ auth()->user()->userType->name}}
+                                            </div>
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                                 <h6 type="button" tabindex="-1" class="dropdown-header">
@@ -46,14 +51,14 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="widget-content-left  ml-3 header-user-info">
+                                <!-- <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
                                         {{ auth()->user()->user_name}}
                                     </div>
                                     <div class="widget-subheading">
                                         {{ auth()->user()->userType->name}}
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>        

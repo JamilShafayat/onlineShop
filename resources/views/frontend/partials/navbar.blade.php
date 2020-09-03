@@ -1,5 +1,5 @@
     <!-- Header Section Begin -->
-    <header class="header">
+    <header class="header" style="margin-top: -25px;">
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -20,7 +20,7 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="{{ asset('/assets/img/language.png') }}" alt="">
+                                <img src="{{ asset('public/assets/img/language.png') }}" alt="">
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="{{ asset('/assets/img/logo.png') }}" alt=""></a>
+                        <a href="{{ asset('/home') }}"><img src="{{ asset('public/assets/img/logo.png') }}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -74,7 +74,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="{{ asset('/shopingCart') }}""><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>${{ isset($order) ? $order->total_amoun : 0}}</span></div>
+                        <div class="header__cart__price">item: <span>${{ isset($order) ? $order->total_amount : 0}}</span></div>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">
-                                                        <i class="nav-link-icon fa fa-cog"></i>
+                                                        <i class="nav-link-icon fa fa-database"></i>
                                                         Dashboard
                                                     </div>
                                                     <div class="widget-subheading">People Interested</div>
@@ -35,7 +35,7 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">
-                                                        <i class="nav-link-icon fa fa-cog"></i>
+                                                        <i class="nav-link-icon fa fa-database"></i>
                                                         Order
                                                     </div>
                                                     <div class="widget-subheading">People Interested</div>
@@ -55,7 +55,7 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">
-                                                        <i class="nav-link-icon fa fa-cog"></i>
+                                                        <i class="nav-link-icon fa fa-database"></i>
                                                         Product
                                                     </div>
                                                     <div class="widget-subheading">People Interested</div>
@@ -75,7 +75,7 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">
-                                                        <i class="nav-link-icon fa fa-cog"></i>
+                                                        <i class="nav-link-icon fa fa-database"></i>
                                                         Category
                                                     </div>
                                                     <div class="widget-subheading">People Interested</div>
@@ -95,7 +95,7 @@
                                             <div class="widget-content-wrapper text-white">
                                                 <div class="widget-content-left">
                                                     <div class="widget-heading">
-                                                        <i class="nav-link-icon fa fa-cog"></i>
+                                                        <i class="nav-link-icon fa fa-database"></i>
                                                         User
                                                     </div>
                                                     <div class="widget-subheading">People Interested</div>
@@ -611,8 +611,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sl.</th>
-                                                        <th>Title</th>
-                                                        <th>Brand</th>
+                                                        <th>Product</th>
                                                         <th>Bought Price</th>
                                                         <th>Sales Price</th>
                                                         <th>Quantity</th>
@@ -626,8 +625,10 @@
                                                     @foreach($products as $product)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
-                                                        <td>{{ $product->title}}</td>
-                                                        <td>{{ $product->brand}}</td>
+                                                        <td>
+                                                            {{ $product->title}}
+                                                            <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 100px; width: 100px;">
+                                                        </td>
                                                         <td>{{ $product->bought_price}}</td>
                                                         <td>{{ $product->sale_price}}</td>
                                                         <td>{{ $product->quantity}}</td>
@@ -672,8 +673,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Sl.</th>
-                                                        <th>Banner</th>
                                                         <th>Name</th>
+                                                        <th>Banner</th>
                                                         <th>Parent Category</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
@@ -686,10 +687,10 @@
                                                     @foreach($categoryList as $category)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
-                                                        <td>
-                                                            <img class="avatar border-white" src="{{ url('/uploads', $category->banner) }}" alt="..."/ style="height: 100px; width: 100px;">
-                                                        </td>
                                                         <td>{{ $category->name}}</td>
+                                                        <td>
+                                                            <img class="avatar border-white" src="{{ url('public/uploads', $category->banner) }}" alt="..."/ style="height: 100px; width: 100px;">
+                                                        </td>
                                                         <td>{{ $category->parent_category ? $category->parent_category->name : ''}}</td>
                                                         <td>
                                                             @if($category->status == 1)
@@ -729,9 +730,9 @@
                                         <div class="page-title-wrapper">
                                             <div class="page-title-actions">
                                                 <div class="d-inline-block dropdown">
-                                                    <button type="button" class="btn mr-2 mb-2 btn btn-info" id="userModal" data-toggle="modal" data-target=".userModal">
+                                                    <button type="button" class="btn mr-2 mb-2 btn btn-success" id="userModal" data-toggle="modal" data-target=".userModal">
                                                         <span class="btn-icon-wrapper pr-2 opacity-7">
-                                                            <i class="nav-link-icon fa fa-edit"></i>
+                                                            <i class="nav-link-icon fa fa-plus"></i>
                                                         </span>
                                                         Create New User
                                                     </button>
@@ -1245,7 +1246,7 @@
                                 <div class="col-md-4 mb-4">
                                     <label for="validationCustomUsername"></label>
                                     <div class="input-group">
-                                        <img class="avatar border-white" src="{{ url('/uploads', $product->image) }}" alt="..."/ style="height: 180px; width: 180px; margin: 20px auto !important; border-radius: 30%;">
+                                        <img class="avatar border-white" src="{{ url('public/uploads', $product->image) }}" alt="..."/ style="height: 180px; width: 180px; margin: 20px auto !important;">
                                     </div>
                                 </div>
                                 <div class="col-md-8 mb-8">
@@ -1515,7 +1516,7 @@
                             <div class="form-row">
                                 <div class="col-md-7 mb-3">
                                     <div class="input-group">
-                                        <img class="avatar border-white" src="{{ url('/uploads', $category->banner) }}" alt="..."/ style="height: 200px; width: 100%; margin: 20px auto !important;">
+                                        <img class="avatar border-white" src="{{ url('public/uploads', $category->banner) }}" alt="..."/ style="height: 200px; width: 100%; margin: 20px auto !important;">
                                         {{-- <img class="avatar border-white" src="{{ url('/uploads', $product->image) }}" alt="..."/ style="height: 180px; width: 180px; margin: 20px auto !important; border-radius: 30%;"> --}}
                                     </div>
                                 </div>

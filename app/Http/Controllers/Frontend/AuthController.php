@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Socialite;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\UserType;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Socialite;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function showHome()
     {
+        $categories = Category::where('status', 1)->get();
         $products = Product::where('status',1)->where('quantity', '>' , 0)->get();
-        return view('frontend.home', compact('products'));
+        return view('frontend.home', compact('products','categories'));
     }
 
     public function showRegistration()

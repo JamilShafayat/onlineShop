@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up Form by Colorlib</title>
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{ asset('/assets/reg_log/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/reg_log/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
     <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('/assets/reg_log/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/reg_log/css/style.css') }}">
 </head>
 <body>
     <div class="main">
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ asset('/assets/reg_log/images/signin-image.jpg') }}" alt="sing up image"></figure>
+                        <figure><img src="{{ asset('public/assets/reg_log/images/signin-image.jpg') }}" alt="sing up image"></figure>
                         <a href="{{ asset('registration')}}" class="signup-image-link">Create an account</a>
                         <a href="{{ asset('home')}}" class="signup-image-link">Back to Website</a>
                     </div>
@@ -58,6 +58,6 @@
     </div>
 
     <!-- JS -->
-    <script src="{{ asset('/assets/reg_log/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('/assets/reg_log/js/main.js') }}"></script>
+    <script src="{{ asset('public/assets/reg_log/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/assets/reg_log/js/main.js') }}"></script>
 </html>

@@ -10,7 +10,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset('public/assets/img/product/details/product-details-1.jpg') }}" alt="">
+                                src="{{ url('public/uploads', $product->image) }}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{{ asset('public/assets/img/product/details/product-details-2.jpg' ) }}"
